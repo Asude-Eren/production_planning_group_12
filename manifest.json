@@ -1474,11 +1474,17 @@
     }
   },
   "files": {
+    ".RData": {
+      "checksum": "9736cf1931d342b3ef01a9fb332dbd3e"
+    },
     "app.R": {
-      "checksum": "34eeaa626fdc55c66182b039e296b01f"
+      "checksum": "4f272cc76f2cb831b001f3df3fe5eb57"
     },
     "R/forecasting/stationary_series/moving_average_new.R": {
       "checksum": "3480d9a9a672cbc755dd69bc9d6f7828"
+    },
+    "R/forecasting/stationary_series/weighted_moving_average.R": {
+      "checksum": "2d53aeb23b7e6b5e37537e31643ae3c5"
     },
     "R/learning_curve.R": {
       "checksum": "9b20a6e9c563a628f70a59d1d89a1f05"
