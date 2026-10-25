@@ -1,5 +1,10 @@
 library(shiny)
 
+# R klasöründeki TÜM .R dosyalarını (alt klasörler dahil) yükle
+for (f in list.files("R", pattern = "\\.[Rr]$", recursive = TRUE, full.names = TRUE)) {
+  source(f, local = TRUE)
+}
+
 ui <- navbarPage("Production Planning",
                  tabPanel("Learning Curve", learning_curve_ui("learning_curve")),
                  tabPanel("Moving Average", moving_average_ui("moving_average")),

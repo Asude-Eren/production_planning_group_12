@@ -1474,20 +1474,17 @@
     }
   },
   "files": {
-    ".RData": {
-      "checksum": "91a42f7f032eab6e895eebc9289ebdf4"
-    },
     "app.R": {
-      "checksum": "c9834eba96fdeccf6f8dbaede487dec8"
+      "checksum": "34eeaa626fdc55c66182b039e296b01f"
+    },
+    "R/forecasting/stationary_series/moving_average_new.R": {
+      "checksum": "3480d9a9a672cbc755dd69bc9d6f7828"
     },
     "R/learning_curve.R": {
       "checksum": "9b20a6e9c563a628f70a59d1d89a1f05"
     },
     "R/moving_average.R": {
-      "checksum": "0f5b3718e904e91ba4706483971191ef"
-    },
-    "R/moving_average_new.R": {
-      "checksum": "2f524bc1ef5cb5253379f9d39a9dc77b"
+      "checksum": "ae7253a5fe9569e0d37a1507cead16e1"
     },
     "README.md": {
       "checksum": "b080e1275a9fc5c9523dcc678507e8ef"
