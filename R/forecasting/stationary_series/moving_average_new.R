@@ -1,257 +1,271 @@
 library(shiny)
 library(readxl)
 
-moving_average_yeni_ui <- function(id) {
+moving_average_new_ui <- function(id) {
   ns <- NS(id)
   
   tagList(
-    # ---- Görünüm (CSS) ----
+    # ---- Styling (CSS) ----
     tags$head(tags$style(HTML("@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-      .mav-modul {
+      .mav-module {
         font-family: 'Poppins', 'Segoe UI', sans-serif; color: #26324A;
         font-size: 13px; padding-top: 28px; padding-bottom: 80px;
       }
 
-      /* Sol ayar kutusu */
-      .mav-modul .well {
+      /* Left settings box */
+      .mav-module .well {
         background: #F1F4F9; border: 1px solid #CBD5E3; border-top: 4px solid #2C3E63;
         border-radius: 10px; padding: 14px; box-shadow: none;
       }
-      .mav-modul .control-label { font-weight: 600; color: #2C3E63; font-size: 13px; }
-      .mav-modul .form-group { margin-bottom: 12px; }
-      .mav-modul .form-control {
+      .mav-module .control-label { font-weight: 600; color: #2C3E63; font-size: 13px; }
+      .mav-module .form-group { margin-bottom: 12px; }
+      .mav-module .form-control {
         height: 32px; padding: 4px 10px; font-size: 13px;
         border-radius: 6px; border: 1px solid #CBD5E3; box-shadow: none;
       }
-      .mav-modul .form-control:focus { border-color: #4A6FA5; }
-      .mav-modul .btn-default {
+      .mav-module .form-control:focus { border-color: #4A6FA5; }
+      .mav-module .btn-default {
         background: #2C3E63; color: #fff; border: none;
         height: 32px; padding: 4px 12px; font-size: 13px; border-radius: 6px 0 0 6px;
       }
-      .mav-modul .progress { height: 18px; margin-bottom: 0; }
-      .mav-modul .progress-bar { background-color: #E76F51; font-size: 11px; line-height: 18px; }
+      .mav-module .progress { height: 18px; margin-bottom: 0; }
+      .mav-module .progress-bar { background-color: #E76F51; font-size: 11px; line-height: 18px; }
 
-      /* Basliklar */
-      .mav-modul h3 {
+      /* Headings */
+      .mav-module h3 {
         font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px;
         color: #2C3E63; background: #F1F4F9; border-left: 4px solid #E76F51;
         padding: 8px 14px; border-radius: 6px; margin: 0 0 10px 0;
       }
-      .mav-modul h4 {
+      .mav-module h4 {
         font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px;
         color: #2C3E63; margin: 18px 0 8px 0;
         display: table; border-bottom: 2px solid #E76F51; padding-bottom: 2px;
       }
 
-      /* Tablolar */
-      .mav-modul table {
+      /* Tables */
+      .mav-module table {
         width: auto; min-width: 360px; background: #fff; font-size: 12.5px;
         border-collapse: separate; border-spacing: 0;
       }
-      .mav-modul table th {
+      .mav-module table th {
         background: #2C3E63; color: #fff; font-weight: 600; padding: 5px 12px;
         text-align: center; position: sticky; top: 0;
       }
-      .mav-modul table th:first-child { border-top-left-radius: 6px; }
-      .mav-modul table th:last-child  { border-top-right-radius: 6px; }
-      .mav-modul table td {
+      .mav-module table th:first-child { border-top-left-radius: 6px; }
+      .mav-module table th:last-child  { border-top-right-radius: 6px; }
+      .mav-module table td {
         padding: 4px 12px; text-align: center; border-top: 1px solid #E1E8F1;
       }
-      .mav-modul table tr:nth-child(even) td { background: #F6F8FB; }
-      .mav-modul table tr:hover td { background: #FCEDE8; }
+      .mav-module table tr:nth-child(even) td { background: #F6F8FB; }
+      .mav-module table tr:hover td { background: #FCEDE8; }
 
-      /* Kaydirilabilir tablo kutusu */
+      /* Scrollable table box */
       .mav-scroll {
         max-height: 280px; overflow-y: auto; display: block; width: fit-content;
         border: 1px solid #CBD5E3; border-radius: 8px;
       }
 
-      /* Grafik aciklamasi (legend) */
-      .mav-lejant { font-size: 12px; margin: 2px 0 4px 0; color: #26324A; }
-      .mav-k {
+      /* Plot legend */
+      .mav-legend { font-size: 12px; margin: 2px 0 4px 0; color: #26324A; }
+      .mav-dot {
         display: inline-block; width: 10px; height: 10px; border-radius: 50%;
         margin: 0 5px 0 16px; vertical-align: middle;
       }
-      .mav-lejant .mav-k:first-child { margin-left: 0; }
-      .mav-k-kare  { border-radius: 2px; }
-      .mav-k-elmas { border-radius: 2px; transform: rotate(45deg); }
+      .mav-legend .mav-dot:first-child { margin-left: 0; }
+      .mav-dot-square  { border-radius: 2px; }
+      .mav-dot-diamond { border-radius: 2px; transform: rotate(45deg); }
 
-      /* Kucuk not */
-      .mav-not { font-size: 11.5px; color: #6B7A94; margin-top: 4px; }
+      /* Small note */
+      .mav-note { font-size: 11.5px; color: #6B7A94; margin-top: 4px; }
     "))),
     
-    # ---- Sayfa yapısı ----
-    div(class = "mav-modul",
+    # ---- Page layout ----
+    div(class = "mav-module",
         sidebarLayout(
           sidebarPanel(width = 3,
-                       fileInput(ns("dosya"), "Upload an Excel file (.xlsx)", accept = ".xlsx"),
+                       fileInput(ns("file"), "Upload an Excel or CSV file (.xlsx, .csv)",
+                                 accept = c(".xlsx", ".csv")),
                        
-                       selectInput(ns("kolon"), "Demand column", choices = NULL),
+                       selectInput(ns("column"), "Demand column", choices = NULL),
                        
                        radioButtons(
-                         ns("mod"), "How should N be chosen?",
-                         choices = c("I will choose N" = "manuel",
-                                     "Find the best N" = "otomatik")
+                         ns("mode"), "How should N be chosen?",
+                         choices = c("I will choose N" = "manual",
+                                     "Find the best N" = "auto")
                        ),
                        
                        conditionalPanel(
-                         condition = sprintf("input['%s'] == 'manuel'", ns("mod")),
+                         condition = sprintf("input['%s'] == 'manual'", ns("mode")),
                          numericInput(ns("N"), "N (number of past periods)",
                                       value = 3, min = 1, step = 1)
                        ),
                        
                        conditionalPanel(
-                         condition = sprintf("input['%s'] == 'otomatik'", ns("mod")),
+                         condition = sprintf("input['%s'] == 'auto'", ns("mode")),
                          numericInput(ns("maxN"), "Maximum N to try",
                                       value = 6, min = 2, step = 1),
-                         radioButtons(ns("kriter"), "Best N means lowest:",
+                         radioButtons(ns("criterion"), "Best N means lowest:",
                                       choices = c("MAD", "MSE", "MAPE"))
                        )
           ),
           
           mainPanel(width = 9,
-                    h3(textOutput(ns("baslik"))),
+                    h3(textOutput(ns("title"))),
                     
-                    # Grafik açıklaması grafiğin ÜSTÜNDE
-                    div(class = "mav-lejant",
-                        span(class = "mav-k", style = "background:#2C3E63;"), "Actual demand",
-                        span(class = "mav-k mav-k-kare", style = "background:#E76F51;"), "Forecast",
-                        span(class = "mav-k mav-k-elmas", style = "background:#E9B44C;"), "Next-period forecast"
+                    # Plot legend sits ABOVE the plot
+                    div(class = "mav-legend",
+                        span(class = "mav-dot", style = "background:#2C3E63;"), "Actual demand",
+                        span(class = "mav-dot mav-dot-square", style = "background:#E76F51;"), "Forecast",
+                        span(class = "mav-dot mav-dot-diamond", style = "background:#E9B44C;"), "Next-period forecast"
                     ),
-                    plotOutput(ns("tahmin_grafik"), height = "320px"),
+                    plotOutput(ns("forecast_plot"), height = "320px"),
                     
                     h4("Error measures"),
-                    tableOutput(ns("hata_tablo")),
+                    tableOutput(ns("error_table")),
                     
-                    # Sadece "Find the best N" modunda görünen kısım
+                    # Only shown in "Find the best N" mode
                     conditionalPanel(
-                      condition = sprintf("input['%s'] == 'otomatik'", ns("mod")),
-                      div(style = "margin-top: 12px;", tableOutput(ns("en_iyi_tablo"))),
-                      div(class = "mav-not", textOutput(ns("en_iyi_not"))),
+                      condition = sprintf("input['%s'] == 'auto'", ns("mode")),
+                      div(style = "margin-top: 12px;", tableOutput(ns("best_table"))),
+                      div(class = "mav-note", textOutput(ns("best_note"))),
                       h4("Comparison of all N values"),
-                      tableOutput(ns("n_tablo")),
-                      plotOutput(ns("grafik"), height = "260px")
+                      tableOutput(ns("n_table")),
+                      plotOutput(ns("bar_plot"), height = "260px")
                     ),
                     
                     h4("Forecasts by period"),
-                    div(class = "mav-scroll", tableOutput(ns("donem_tablo")))
+                    div(class = "mav-scroll", tableOutput(ns("period_table")))
           )
         )
     )
   )
 }
 
-moving_average_yeni_server <- function(id) {
+moving_average_new_server <- function(id) {
   moduleServer(id, function(input, output, session) {
     
-    # ---- Excel'i oku ----
-    veri <- reactive({
-      req(input$dosya)
-      read_excel(input$dosya$datapath)
+    # ---- Read the uploaded file (.xlsx or .csv) ----
+    data <- reactive({
+      req(input$file)
+      ext <- tolower(tools::file_ext(input$file$name))
+      validate(need(ext %in% c("xlsx", "csv"),
+                    "Please upload an .xlsx or .csv file."))
+      if (ext == "csv") {
+        df <- read.csv(input$file$datapath, check.names = FALSE)
+        # If only one column was found, the file probably uses ";" as separator
+        if (ncol(df) == 1) {
+          df <- read.csv2(input$file$datapath, check.names = FALSE)
+        }
+        df
+      } else {
+        read_excel(input$file$datapath)
+      }
     })
     
-    # ---- Demand column listesini doldur ----
-    observeEvent(veri(), {
-      sayisal <- names(veri())[sapply(veri(), is.numeric)]
-      updateSelectInput(session, "kolon", choices = sayisal)
+    # ---- Fill the demand column list ----
+    observeEvent(data(), {
+      numeric_cols <- names(data())[sapply(data(), is.numeric)]
+      updateSelectInput(session, "column", choices = numeric_cols)
     })
     
-    # ---- Talep vektörü ----
-    talep <- reactive({
-      req(input$kolon)
-      d <- veri()[[input$kolon]]
+    # ---- Demand vector ----
+    demand <- reactive({
+      req(input$column)
+      d <- data()[[input$column]]
       d[!is.na(d)]
     })
     
-    # ---- MA(N) tahminleri (son eleman = gelecek dönem tahmini) ----
-    hesapla <- function(d, N) {
+    # ---- MA(N) forecasts (last element = next-period forecast) ----
+    compute_forecast <- function(d, N) {
       n <- length(d)
-      tahmin <- rep(NA_real_, n + 1)
+      forecast <- rep(NA_real_, n + 1)
       for (t in (N + 1):(n + 1)) {
-        tahmin[t] <- mean(d[(t - N):(t - 1)])
+        forecast[t] <- mean(d[(t - N):(t - 1)])
       }
-      tahmin
+      forecast
     }
     
-    # ---- Hata ölçüleri: MAD, MSE, MAPE ----
-    # bas = hatanın hesaplanmaya başlandığı ilk dönem
-    # MAPE'de talebi 0 olan dönemler hesaba katılmaz
-    hata_olc <- function(d, tahmin, bas = 1) {
-      idx <- bas:length(d)
-      idx <- idx[!is.na(tahmin[idx])]
-      e   <- d[idx] - tahmin[idx]
-      sifir_degil <- d[idx] != 0
+    # ---- Error measures: MAD, MSE, MAPE ----
+    # start = first period in which the error is evaluated
+    # MAPE ignores periods where demand is 0
+    # Error is defined as e = F - D
+    error_measures <- function(d, forecast, start = 1) {
+      idx <- start:length(d)
+      idx <- idx[!is.na(forecast[idx])]
+      e   <- forecast[idx] - d[idx]
+      nonzero <- d[idx] != 0
       c(MAD  = mean(abs(e)),
         MSE  = mean(e^2),
-        MAPE = mean(abs(e[sifir_degil] / d[idx][sifir_degil])) * 100)
+        MAPE = mean(abs(e[nonzero] / d[idx][nonzero])) * 100)
     }
     
-    # ---- N = 1..ust hepsini AYNI dönemlerde (ust+1 ... n) karşılaştır ----
-    tara <- function(d, ust) {
-      sonuc_liste <- lapply(1:ust, function(k) {
-        h <- hata_olc(d, hesapla(d, k), bas = ust + 1)
+    # ---- Compare N = 1..upper on the SAME periods (upper+1 ... n) ----
+    scan_n <- function(d, upper) {
+      result_list <- lapply(1:upper, function(k) {
+        h <- error_measures(d, compute_forecast(d, k), start = upper + 1)
         data.frame(N = k,
                    MAD = unname(h["MAD"]),
                    MSE = unname(h["MSE"]),
                    MAPE = unname(h["MAPE"]))
       })
-      do.call(rbind, sonuc_liste)
+      do.call(rbind, result_list)
     }
     
-    # ---- Otomatik mod: denenecek en büyük N ----
-    ust_N <- reactive({
+    # ---- Auto mode: largest N to try ----
+    max_n <- reactive({
       req(input$maxN)
-      ust <- floor(min(input$maxN, length(talep()) - 1))
-      validate(need(ust >= 1, "Not enough data."))
-      ust
+      upper <- floor(min(input$maxN, length(demand()) - 1))
+      validate(need(upper >= 1, "Not enough data."))
+      upper
     })
     
-    # ---- Otomatik mod: karşılaştırma tablosu ----
-    arama <- reactive({
-      tara(talep(), ust_N())
+    # ---- Auto mode: comparison table ----
+    search_table <- reactive({
+      scan_n(demand(), max_n())
     })
     
-    # ---- Kullanılacak N (manuel veya en iyi) ----
-    secilen_N <- reactive({
-      if (input$mod == "manuel") {
+    # ---- N to use (manual or best) ----
+    chosen_n <- reactive({
+      if (input$mode == "manual") {
         req(input$N)
         validate(need(input$N >= 1 && input$N == round(input$N),
                       "N must be a positive integer."),
-                 need(input$N < length(talep()),
+                 need(input$N < length(demand()),
                       "N must be smaller than the number of periods."))
         input$N
       } else {
-        tablo <- arama()
-        tablo$N[which.min(tablo[[input$kriter]])]
+        tbl <- search_table()
+        tbl$N[which.min(tbl[[input$criterion]])]
       }
     })
     
-    # ---- Hatanın hesaplandığı ilk dönem ----
-    # Manuel: N+1 | Otomatik: maxN+1 (tüm N'ler aynı dönemlerde)
-    baslangic <- reactive({
-      if (input$mod == "manuel") {
-        secilen_N() + 1
+    # ---- First period in which the error is evaluated ----
+    # Manual: N+1 | Auto: maxN+1 (all N values use the same periods)
+    start_period <- reactive({
+      if (input$mode == "manual") {
+        chosen_n() + 1
       } else {
-        ust_N() + 1
+        max_n() + 1
       }
     })
     
-    # ---- Üstteki başlık ----
-    output$baslik <- renderText({
-      d <- talep()
-      N <- secilen_N()
-      f <- hesapla(d, N)
+    # ---- Title at the top ----
+    output$title <- renderText({
+      d <- demand()
+      N <- chosen_n()
+      f <- compute_forecast(d, N)
       paste0("MA(", N, ") — next-period forecast: ",
              sprintf("%.2f", f[length(d) + 1]))
     })
     
-    # ---- Gerçek talep ve tahmin çizgi grafiği (yazı yok, açıklama üstte) ----
-    output$tahmin_grafik <- renderPlot({
-      d <- talep()
-      N <- secilen_N()
+    # ---- Line plot of actual demand and forecast (legend is above the plot) ----
+    output$forecast_plot <- renderPlot({
+      d <- demand()
+      N <- chosen_n()
       n <- length(d)
-      f <- hesapla(d, N)
+      f <- compute_forecast(d, N)
       
       par(bg = "#FFFFFF", mar = c(4, 4, 2.5, 1), cex.main = 1, cex.lab = 0.9,
           cex.axis = 0.85)
@@ -265,71 +279,71 @@ moving_average_yeni_server <- function(id) {
       points(n + 1, f[n + 1], pch = 18, cex = 2.2, col = "#E9B44C")
     })
     
-    # ---- Error measures tablosu ----
-    output$hata_tablo <- renderTable({
-      d   <- talep()
-      N   <- secilen_N()
-      n   <- length(d)
-      bas <- baslangic()
-      h   <- hata_olc(d, hesapla(d, N), bas = bas)
+    # ---- Error measures table ----
+    output$error_table <- renderTable({
+      d     <- demand()
+      N     <- chosen_n()
+      n     <- length(d)
+      start <- start_period()
+      h     <- error_measures(d, compute_forecast(d, N), start = start)
       data.frame(
         "Measure" = c("MAD", "MSE", "MAPE (%)"),
         "Value"   = round(unname(h), 2),
-        "Periods evaluated" = paste0(bas, "–", n),
+        "Periods evaluated" = paste0(start, "–", n),
         check.names = FALSE
       )
     }, digits = 2)
     
-    # ---- Otomatik mod: her ölçü için en iyi N ----
-    output$en_iyi_tablo <- renderTable({
-      req(input$mod == "otomatik")
-      tablo <- arama()
+    # ---- Auto mode: best N for each measure ----
+    output$best_table <- renderTable({
+      req(input$mode == "auto")
+      tbl <- search_table()
       data.frame(
         "Best by"     = c("MAD", "MSE", "MAPE (%)"),
-        "Best N"      = as.integer(c(tablo$N[which.min(tablo$MAD)],
-                                     tablo$N[which.min(tablo$MSE)],
-                                     tablo$N[which.min(tablo$MAPE)])),
-        "Error value" = round(c(min(tablo$MAD, na.rm = TRUE),
-                                min(tablo$MSE, na.rm = TRUE),
-                                min(tablo$MAPE, na.rm = TRUE)), 2),
+        "Best N"      = as.integer(c(tbl$N[which.min(tbl$MAD)],
+                                     tbl$N[which.min(tbl$MSE)],
+                                     tbl$N[which.min(tbl$MAPE)])),
+        "Error value" = round(c(min(tbl$MAD, na.rm = TRUE),
+                                min(tbl$MSE, na.rm = TRUE),
+                                min(tbl$MAPE, na.rm = TRUE)), 2),
         check.names = FALSE
       )
     }, digits = 2)
     
-    output$en_iyi_not <- renderText({
-      req(input$mod == "otomatik")
-      ust <- ust_N()
-      paste0("All N values from 1 to ", ust, " are compared on the same periods (",
-             ust + 1, "–", length(talep()), "), so the comparison is fair.")
+    output$best_note <- renderText({
+      req(input$mode == "auto")
+      upper <- max_n()
+      paste0("All N values from 1 to ", upper, " are compared on the same periods (",
+             upper + 1, "–", length(demand()), "), so the comparison is fair.")
     })
     
-    # ---- Otomatik mod: tüm N'lerin karşılaştırma tablosu ----
-    output$n_tablo <- renderTable({
-      req(input$mod == "otomatik")
-      tablo <- arama()
-      tablo$MAD  <- round(tablo$MAD, 3)
-      tablo$MSE  <- round(tablo$MSE, 3)
-      tablo$MAPE <- round(tablo$MAPE, 3)
-      tablo$N    <- as.integer(tablo$N)
-      tablo
+    # ---- Auto mode: comparison table of all N values ----
+    output$n_table <- renderTable({
+      req(input$mode == "auto")
+      tbl <- search_table()
+      tbl$MAD  <- round(tbl$MAD, 3)
+      tbl$MSE  <- round(tbl$MSE, 3)
+      tbl$MAPE <- round(tbl$MAPE, 3)
+      tbl$N    <- as.integer(tbl$N)
+      tbl
     })
     
-    # ---- Otomatik mod: çubuk grafik (en iyi N mercan) ----
-    output$grafik <- renderPlot({
-      req(input$mod == "otomatik")
-      tablo <- arama()
-      k <- input$kriter
-      renk <- ifelse(tablo$N == secilen_N(), "#E76F51", "#B7C4D9")
-      barplot(tablo[[k]], names.arg = tablo$N, col = renk, border = NA,
-              xlab = "N", ylab = k,
-              main = paste0("Best N by ", k, " = ", secilen_N()))
+    # ---- Auto mode: bar plot (best N in coral) ----
+    output$bar_plot <- renderPlot({
+      req(input$mode == "auto")
+      tbl <- search_table()
+      crit <- input$criterion
+      colors <- ifelse(tbl$N == chosen_n(), "#E76F51", "#B7C4D9")
+      barplot(tbl[[crit]], names.arg = tbl$N, col = colors, border = NA,
+              xlab = "N", ylab = crit,
+              main = paste0("Best N by ", crit, " = ", chosen_n()))
     })
     
-    # ---- Dönem bazlı tahmin tablosu (Error = F - D) ----
-    output$donem_tablo <- renderTable({
-      d <- talep()
+    # ---- Period-by-period forecast table (Error = F - D) ----
+    output$period_table <- renderTable({
+      d <- demand()
       n <- length(d)
-      f <- hesapla(d, secilen_N())
+      f <- compute_forecast(d, chosen_n())
       data.frame(
         "Period"            = 1:(n + 1),
         "Demand (D)"        = c(d, NA),
