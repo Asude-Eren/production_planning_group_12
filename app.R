@@ -9,7 +9,7 @@ ui <- navbarPage("Production Planning",
                  tabPanel("Moving Average", moving_average_ui("moving_average")),
                  tabPanel("Moving Average (New)", moving_average_new_ui("moving_average_new")),
                  tabPanel("Weighted Moving Average", weighted_moving_average_ui("weighted_moving_average")),
-                 tabPanel("Simple Exponential Smoothing", SimpleExponential_ui("ses_mod"))
+                 tabPanel("Simple Exponential Smoothing", simple_exponential_ui("ses_mod"))
 )
 
 server <- function(input, output, session) {
@@ -17,7 +17,7 @@ server <- function(input, output, session) {
   moving_average_server("moving_average")
   moving_average_new_server("moving_average_new")
   weighted_moving_average_server("weighted_moving_average")
-  SimpleExponential_server("ses_mod")
+  simple_exponential_server("ses_mod")
 }
 
 shinyApp(ui, server)
