@@ -1321,30 +1321,31 @@
       "description": {
         "Package": "otel",
         "Title": "OpenTelemetry R API",
-        "Version": "0.3.0",
+        "Version": "0.2.0",
         "Authors@R": "\n    person(\"Gábor\", \"Csárdi\", , \"csardi.gabor@gmail.com\", role = c(\"aut\", \"cre\"))",
         "Description": "High-quality, ubiquitous, and portable telemetry to enable\n    effective observability. OpenTelemetry is a collection of tools,\n    APIs, and SDKs used to instrument, generate, collect, and export\n    telemetry data (metrics, logs, and traces) for analysis in order to\n    understand your software's performance and behavior.\n    This package implements the OpenTelemetry API:\n    <https://opentelemetry.io/docs/specs/otel/>.\n    Use this package as a dependency if you want to instrument your R\n    package for OpenTelemetry.",
         "License": "MIT + file LICENSE",
         "Encoding": "UTF-8",
+        "RoxygenNote": "7.3.2.9000",
         "Depends": "R (>= 3.6.0)",
-        "Suggests": "callr, cli, glue, jsonlite, otelsdk (>= 0.2.4), processx,\nshiny, spelling, testthat (>= 3.0.0), utils, withr",
+        "Suggests": "callr, cli, glue, jsonlite, otelsdk, processx, shiny,\nspelling, testthat (>= 3.0.0), utils, withr",
         "Config/Needs/website": "tidyverse/tidytemplate",
         "Config/testthat/edition": "3",
         "URL": "https://otel.r-lib.org, https://github.com/r-lib/otel",
+        "Additional_repositories": "https://github.com/r-lib/otelsdk/releases/download/devel",
         "BugReports": "https://github.com/r-lib/otel/issues",
-        "Config/roxygen2/version": "8.1.1",
         "NeedsCompilation": "no",
-        "Packaged": "2026-11-07 14:37:49 UTC; gaborcsardi",
+        "Packaged": "2025-08-29 12:46:28 UTC; gaborcsardi",
         "Author": "Gábor Csárdi [aut, cre]",
         "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2026-11-07 15:20:02 UTC",
-        "Built": "R 4.6.2; ; 2026-11-07 16:51:25 UTC; windows",
+        "Date/Publication": "2025-08-29 13:30:07 UTC",
+        "Built": "R 4.6.1; ; 2026-10-28 02:02:13 UTC; windows",
         "RemoteType": "standard",
         "RemotePkgRef": "otel",
         "RemoteRef": "otel",
         "RemoteRepos": "https://cran.rstudio.com",
-        "RemoteSha.Version": "0.3.0"
+        "RemoteSha.Version": "0.2.0"
       }
     },
     "pillar": {
@@ -2138,7 +2139,7 @@
   },
   "files": {
     "app.R": {
-      "checksum": "db601e8e19530869fe063b3fce64092b"
+      "checksum": "a2d973daa1fbf4647d1a6c73ce2aa296"
     },
     "R/box_jenkins.R": {
       "checksum": "daf60b0889dbb49569c9d6a9656e4075"
@@ -2151,6 +2152,9 @@
     },
     "R/forecasting/stationary_series/weighted_moving_average.R": {
       "checksum": "53cf1eb7e737a6b0c5a434e18ecf14d8"
+    },
+    "R/holts_method.R": {
+      "checksum": "5919c91a48224a76830809069c9c7919"
     },
     "R/learning_curve.R": {
       "checksum": "9b20a6e9c563a628f70a59d1d89a1f05"
