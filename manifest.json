@@ -2153,7 +2153,7 @@
     "R/forecasting/stationary_series/weighted_moving_average.R": {
       "checksum": "53cf1eb7e737a6b0c5a434e18ecf14d8"
     },
-    "R/holts_method.R": {
+    "R/forecasting/trend_series/holts_method.R": {
       "checksum": "5919c91a48224a76830809069c9c7919"
     },
     "R/learning_curve.R": {
