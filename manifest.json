@@ -134,6 +134,43 @@
         "RemoteSha.Version": "1.1.2"
       }
     },
+    "RcppArmadillo": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "RcppArmadillo",
+        "Type": "Package",
+        "Title": "'Rcpp' Integration for the 'Armadillo' Templated Linear Algebra\nLibrary",
+        "Version": "15.6.2-1",
+        "Date": "2026-10-16",
+        "Authors@R": "c(person(\"Dirk\", \"Eddelbuettel\", role = c(\"aut\", \"cre\"), email = \"edd@debian.org\",\n                    comment = c(ORCID = \"0000-0001-6419-907X\")),\n             person(\"Romain\", \"Francois\", role = \"aut\",\n                    comment = c(ORCID = \"0000-0002-2444-4226\")),\n             person(\"Doug\", \"Bates\", role = \"aut\",\n                    comment = c(ORCID = \"0000-0001-8316-9503\")),\n             person(\"Binxiang\", \"Ni\", role = \"aut\"),\n             person(\"Conrad\", \"Sanderson\", role = \"aut\",\n                    comment = c(ORCID = \"0000-0002-0049-4501\")))",
+        "Description": "'Armadillo' is a templated C++ linear algebra library aiming towards\n a good balance between speed and ease of use. It provides high-level syntax and\n functionality deliberately similar to Matlab. It is useful for algorithm development\n directly in C++, or quick conversion of research code into production environments.\n It provides efficient classes for vectors, matrices and cubes where dense and sparse\n matrices are supported. Integer, floating point and complex numbers are supported.\n A sophisticated expression evaluator (based on template meta-programming) automatically\n combines several operations to increase speed and efficiency. Dynamic evaluation\n automatically chooses optimal code paths based on detected matrix structures.\n Matrix decompositions are provided through integration with LAPACK, or one of its\n high performance drop-in replacements (such as 'MKL' or 'OpenBLAS'). It can\n automatically use 'OpenMP' multi-threading (parallelisation) to speed up\n computationally expensive operations.\n\n    The 'RcppArmadillo' package includes the header files from the 'Armadillo' library;\n users do not need to install 'Armadillo' itself in order to use 'RcppArmadillo'.\n Starting from release 15.0.0, the minimum compilation standard is C++14.\n\n    Since release 7.800.0, 'Armadillo' is licensed under Apache License 2; previous\n releases were under licensed as MPL 2.0 from version 3.800.0 onwards and LGPL-3\n prior to that; 'RcppArmadillo' (the 'Rcpp' bindings/bridge to Armadillo) is licensed\n under the GNU GPL version 2 or later, as is the rest of 'Rcpp'.",
+        "License": "GPL (>= 2)",
+        "LazyLoad": "yes",
+        "Depends": "R (>= 3.3.0)",
+        "LinkingTo": "Rcpp",
+        "Imports": "Rcpp (>= 1.1.1), stats, utils, methods",
+        "Suggests": "tinytest, Matrix (>= 1.3.0), pkgKitten, reticulate, slam",
+        "URL": "https://github.com/RcppCore/RcppArmadillo,\nhttps://dirk.eddelbuettel.com/code/rcpp.armadillo.html",
+        "BugReports": "https://github.com/RcppCore/RcppArmadillo/issues",
+        "RoxygenNote": "6.0.1",
+        "Encoding": "UTF-8",
+        "VignetteBuilder": "Rcpp",
+        "NeedsCompilation": "yes",
+        "Packaged": "2026-10-16 16:11:52 UTC; edd",
+        "Author": "Dirk Eddelbuettel [aut, cre] (ORCID:\n    <https://orcid.org/0000-0001-6419-907X>),\n  Romain Francois [aut] (ORCID: <https://orcid.org/0000-0002-2444-4226>),\n  Doug Bates [aut] (ORCID: <https://orcid.org/0000-0001-8316-9503>),\n  Binxiang Ni [aut],\n  Conrad Sanderson [aut] (ORCID: <https://orcid.org/0000-0002-0049-4501>)",
+        "Maintainer": "Dirk Eddelbuettel <edd@debian.org>",
+        "Repository": "CRAN",
+        "Date/Publication": "2026-10-17 07:40:15 UTC",
+        "Built": "R 4.6.1; x86_64-w64-mingw32; 2026-10-28 03:02:12 UTC; windows",
+        "Archs": "x64",
+        "RemoteType": "standard",
+        "RemotePkgRef": "RcppArmadillo",
+        "RemoteRef": "RcppArmadillo",
+        "RemoteRepos": "https://cran.rstudio.com",
+        "RemoteSha.Version": "15.6.2-1"
+      }
+    },
     "S7": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -337,6 +374,41 @@
         "RemoteRef": "cli",
         "RemoteRepos": "https://cran.rstudio.com",
         "RemoteSha.Version": "3.6.6"
+      }
+    },
+    "colorspace": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "colorspace",
+        "Version": "2.1-4",
+        "Date": "2026-10-08",
+        "Title": "A Toolbox for Manipulating and Assessing Colors and Palettes",
+        "Authors@R": "c(person(given = \"Ross\", family = \"Ihaka\", role = \"aut\", email = \"ihaka@stat.auckland.ac.nz\"),\n             person(given = \"Paul\", family = \"Murrell\", role = \"aut\", email = \"paul@stat.auckland.ac.nz\",\n                    comment = c(ORCID = \"0000-0002-3224-8858\")),\n             person(given = \"Kurt\", family = \"Hornik\", role = \"aut\", email = \"Kurt.Hornik@R-project.org\",\n\t\t    comment = c(ORCID = \"0000-0003-4198-9911\")),\n             person(given = c(\"Jason\", \"C.\"), family = \"Fisher\", role = \"aut\", email = \"jfisher@usgs.gov\",\n                    comment = c(ORCID = \"0000-0001-9032-8912\")),\n             person(given = \"Reto\", family = \"Stauffer\", role = \"aut\", email = \"Reto.Stauffer@uibk.ac.at\",\n                    comment = c(ORCID = \"0000-0002-3798-5507\")),\n             person(given = c(\"Claus\", \"O.\"), family = \"Wilke\", role = \"aut\", email = \"wilke@austin.utexas.edu\",\n                    comment = c(ORCID = \"0000-0002-7470-9261\")),\n             person(given = c(\"Claire\", \"D.\"), family = \"McWhite\", role = \"aut\", email = \"claire.mcwhite@utmail.utexas.edu\",\n                    comment = c(ORCID = \"0000-0001-7346-3047\")),\n             person(given = \"Achim\", family = \"Zeileis\", role = c(\"aut\", \"cre\"), email = \"Achim.Zeileis@R-project.org\",\n                    comment = c(ORCID = \"0000-0003-0918-3766\")))",
+        "Description": "Carries out mapping between assorted color spaces including RGB, HSV, HLS,\n             CIEXYZ, CIELUV, HCL (polar CIELUV), CIELAB, and polar CIELAB.\n\t     Qualitative, sequential, and diverging color palettes based on HCL colors\n\t     are provided along with corresponding ggplot2 color scales.\n\t     Color palette choice is aided by an interactive app (with either a Tcl/Tk\n\t     or a shiny graphical user interface) and shiny apps with an HCL color picker and a\n\t     color vision deficiency emulator. Plotting functions for displaying\n\t     and assessing palettes include color swatches, visualizations of the\n\t     HCL space, and trajectories in HCL and/or RGB spectrum. Color manipulation\n\t     functions include: desaturation, lightening/darkening, mixing, and\n\t     simulation of color vision deficiencies (deutanomaly, protanomaly, tritanomaly).\n\t     Details can be found on the project web page at <https://colorspace.R-Forge.R-project.org/>\n\t     and in the accompanying scientific paper: Zeileis et al. (2020, Journal of Statistical\n\t     Software, <doi:10.18637/jss.v096.i01>).",
+        "Depends": "R (>= 3.0.0), methods",
+        "Imports": "graphics, grDevices, stats",
+        "Suggests": "datasets, utils, KernSmooth, MASS, kernlab, mvtnorm, vcd,\ntcltk, shiny, shinyjs, ggplot2, dplyr, scales, grid, png, jpeg,\nknitr, rmarkdown, RColorBrewer, rcartocolor, scico, viridis,\nwesanderson",
+        "VignetteBuilder": "knitr",
+        "License": "BSD_3_clause + file LICENSE",
+        "URL": "https://zeileis.codeberg.page/colorspace/, https://hclwizard.org/",
+        "BugReports": "https://codeberg.org/zeileis/colorspace/issues",
+        "LazyData": "yes",
+        "Encoding": "UTF-8",
+        "RoxygenNote": "7.3.2",
+        "NeedsCompilation": "yes",
+        "Packaged": "2026-10-08 01:54:02 UTC; zeileis",
+        "Author": "Ross Ihaka [aut],\n  Paul Murrell [aut] (ORCID: <https://orcid.org/0000-0002-3224-8858>),\n  Kurt Hornik [aut] (ORCID: <https://orcid.org/0000-0003-4198-9911>),\n  Jason C. Fisher [aut] (ORCID: <https://orcid.org/0000-0001-9032-8912>),\n  Reto Stauffer [aut] (ORCID: <https://orcid.org/0000-0002-3798-5507>),\n  Claus O. Wilke [aut] (ORCID: <https://orcid.org/0000-0002-7470-9261>),\n  Claire D. McWhite [aut] (ORCID:\n    <https://orcid.org/0000-0001-7346-3047>),\n  Achim Zeileis [aut, cre] (ORCID:\n    <https://orcid.org/0000-0003-0918-3766>)",
+        "Maintainer": "Achim Zeileis <Achim.Zeileis@R-project.org>",
+        "Repository": "CRAN",
+        "Date/Publication": "2026-10-08 07:50:16 UTC",
+        "Built": "R 4.6.1; x86_64-w64-mingw32; 2026-10-28 02:02:15 UTC; windows",
+        "Archs": "x64",
+        "RemoteType": "standard",
+        "RemotePkgRef": "colorspace",
+        "RemoteRef": "colorspace",
+        "RemoteRepos": "https://cran.rstudio.com",
+        "RemoteSha.Version": "2.1-4"
       }
     },
     "commonmark": {
@@ -631,6 +703,75 @@
         "RemoteSha.Version": "0.5.3"
       }
     },
+    "forecast": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "forecast",
+        "Version": "9.0.2",
+        "Title": "Forecasting Functions for Time Series and Linear Models",
+        "Description": "Methods and tools for displaying and analysing\n             univariate time series forecasts including exponential smoothing\n             via state space models and automatic ARIMA modelling.",
+        "Depends": "R (>= 4.1.0)",
+        "Imports": "colorspace, fracdiff, generics (>= 0.1.2), ggplot2 (>= 3.4.0),\ngraphics, lmtest, magrittr, nnet, parallel, Rcpp (>= 0.12.4),\nstats, timeDate, urca, withr, zoo",
+        "Suggests": "forecTheta, knitr, methods, rmarkdown, rticles, scales,\nseasonal, testthat (>= 3.3.0), uroot",
+        "LinkingTo": "Rcpp (>= 0.12.4), RcppArmadillo (>= 0.2.35)",
+        "LazyData": "yes",
+        "ByteCompile": "TRUE",
+        "Authors@R": "c(\n  person(\"Rob\", \"Hyndman\", email = \"Rob.Hyndman@monash.edu\", role = c(\"aut\", \"cre\", \"cph\"), comment = c(ORCID = \"0000-0002-2140-5352\")),\n  person(\"George\", \"Athanasopoulos\", role = \"aut\", comment = c(ORCID = \"0000-0002-5389-2802\")),\n  person(\"Christoph\", \"Bergmeir\", role = \"aut\", comment = c(ORCID = \"0000-0002-3665-9021\")),\n  person(\"Gabriel\", \"Caceres\", role = \"aut\", comment = c(ORCID = \"0000-0002-2947-2023\")),\n  person(\"Leanne\", \"Chhay\", role = \"aut\"),\n  person(\"Kirill\", \"Kuroptev\", role = \"aut\"),\n  person(\"Maximilian\", \"Mücke\", role = \"aut\", comment = c(ORCID = \"0009-0000-9432-9795\")),\n  person(\"Mitchell\", \"O'Hara-Wild\", role = \"aut\", comment = c(ORCID = \"0000-0001-6729-7695\")),\n  person(\"Fotios\", \"Petropoulos\", role = \"aut\", comment = c(ORCID = \"0000-0003-3039-4955\")),\n  person(\"Slava\", \"Razbash\", role = \"aut\"),\n  person(\"Earo\", \"Wang\", role = \"aut\", comment = c(ORCID = \"0000-0001-6448-5260\")),\n  person(\"Farah\", \"Yasmeen\", role = \"aut\", comment = c(ORCID = \"0000-0002-1479-5401\")),\n  person(\"Federico\", \"Garza\", role = \"ctb\"),\n  person(\"Daniele\", \"Girolimetto\", role = \"ctb\"),\n  person(\"Ross\", \"Ihaka\", role = c(\"ctb\", \"cph\")),\n  person(\"R Core Team\", role = c(\"ctb\", \"cph\")),\n  person(\"Daniel\", \"Reid\", role = \"ctb\"),\n  person(\"David\", \"Shaub\", role = \"ctb\"),\n  person(\"Yuan\", \"Tang\", role = \"ctb\", comment = c(ORCID = \"0000-0001-5243-233X\")),\n  person(\"Xiaoqian\", \"Wang\", role = \"ctb\"),\n  person(\"Zhenyu\", \"Zhou\", role = \"ctb\")\n  )",
+        "BugReports": "https://github.com/robjhyndman/forecast/issues",
+        "License": "GPL-3",
+        "URL": "https://pkg.robjhyndman.com/forecast/,\nhttps://github.com/robjhyndman/forecast",
+        "VignetteBuilder": "knitr",
+        "RoxygenNote": "7.3.3",
+        "Encoding": "UTF-8",
+        "Config/testthat/edition": "3",
+        "NeedsCompilation": "yes",
+        "Packaged": "2026-03-17 20:42:42 UTC; hyndman",
+        "Author": "Rob Hyndman [aut, cre, cph] (ORCID:\n    <https://orcid.org/0000-0002-2140-5352>),\n  George Athanasopoulos [aut] (ORCID:\n    <https://orcid.org/0000-0002-5389-2802>),\n  Christoph Bergmeir [aut] (ORCID:\n    <https://orcid.org/0000-0002-3665-9021>),\n  Gabriel Caceres [aut] (ORCID: <https://orcid.org/0000-0002-2947-2023>),\n  Leanne Chhay [aut],\n  Kirill Kuroptev [aut],\n  Maximilian Mücke [aut] (ORCID: <https://orcid.org/0009-0000-9432-9795>),\n  Mitchell O'Hara-Wild [aut] (ORCID:\n    <https://orcid.org/0000-0001-6729-7695>),\n  Fotios Petropoulos [aut] (ORCID:\n    <https://orcid.org/0000-0003-3039-4955>),\n  Slava Razbash [aut],\n  Earo Wang [aut] (ORCID: <https://orcid.org/0000-0001-6448-5260>),\n  Farah Yasmeen [aut] (ORCID: <https://orcid.org/0000-0002-1479-5401>),\n  Federico Garza [ctb],\n  Daniele Girolimetto [ctb],\n  Ross Ihaka [ctb, cph],\n  R Core Team [ctb, cph],\n  Daniel Reid [ctb],\n  David Shaub [ctb],\n  Yuan Tang [ctb] (ORCID: <https://orcid.org/0000-0001-5243-233X>),\n  Xiaoqian Wang [ctb],\n  Zhenyu Zhou [ctb]",
+        "Maintainer": "Rob Hyndman <Rob.Hyndman@monash.edu>",
+        "Repository": "CRAN",
+        "Date/Publication": "2026-03-18 06:13:07 UTC",
+        "Built": "R 4.6.1; x86_64-w64-mingw32; 2026-10-28 04:13:16 UTC; windows",
+        "Archs": "x64",
+        "RemoteType": "standard",
+        "RemotePkgRef": "forecast",
+        "RemoteRef": "forecast",
+        "RemoteRepos": "https://cran.rstudio.com",
+        "RemoteSha.Version": "9.0.2"
+      }
+    },
+    "fracdiff": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "fracdiff",
+        "Version": "1.5-4",
+        "VersionNote": "Released 1.5-3 on 2024-02-01, 1.5-2 on 2022-10-31, 1.5-1\non 2020-01-20",
+        "Date": "2026-04-27",
+        "Title": "Fractionally Differenced ARIMA aka ARFIMA(P,d,q) Models",
+        "Authors@R": "c(person(\"Martin\",\"Maechler\", role=c(\"aut\",\"cre\"), email=\"maechler@stat.math.ethz.ch\",\n\t   \t\t\t\t comment = c(ORCID = \"0000-0002-8685-9910\"))\n , person(\"Chris\", \"Fraley\", role=c(\"ctb\",\"cph\"), comment = \"S original; Fortran code\")\n , person(\"Friedrich\", \"Leisch\", role = \"ctb\",\n                            comment = c(\"R port\", ORCID = \"0000-0001-7278-1983\"))\n , person(\"Valderio\", \"Reisen\", role=\"ctb\", comment = \"fdGPH() & fdSperio()\")\n , person(\"Artur\",  \"Lemonte\",  role=\"ctb\", comment = \"fdGPH() & fdSperio()\")\n , person(\"Rob\", \"Hyndman\", email=\"Rob.Hyndman@monash.edu\", role=\"ctb\",\n     \t                    comment = c(\"residuals() & fitted()\", ORCID = \"0000-0002-2140-5352\"))\n )",
+        "Description": "Maximum likelihood estimation of the parameters of a fractionally\n   differenced ARIMA(p,d,q) model (Haslett and Raftery, Appl.Statistics, 1989);\n   including inference and basic methods.  Some alternative algorithms to estimate \"H\".",
+        "Imports": "stats",
+        "Suggests": "longmemo, forecast, urca",
+        "License": "GPL (>= 2)",
+        "URL": "https://github.com/mmaechler/fracdiff",
+        "BugReports": "https://github.com/mmaechler/fracdiff/issues",
+        "Encoding": "UTF-8",
+        "NeedsCompilation": "yes",
+        "Packaged": "2026-04-27 15:45:33 UTC; maechler",
+        "Author": "Martin Maechler [aut, cre] (ORCID:\n    <https://orcid.org/0000-0002-8685-9910>),\n  Chris Fraley [ctb, cph] (S original; Fortran code),\n  Friedrich Leisch [ctb] (R port, ORCID:\n    <https://orcid.org/0000-0001-7278-1983>),\n  Valderio Reisen [ctb] (fdGPH() & fdSperio()),\n  Artur Lemonte [ctb] (fdGPH() & fdSperio()),\n  Rob Hyndman [ctb] (residuals() & fitted(), ORCID:\n    <https://orcid.org/0000-0002-2140-5352>)",
+        "Maintainer": "Martin Maechler <maechler@stat.math.ethz.ch>",
+        "Repository": "CRAN",
+        "Date/Publication": "2026-04-28 05:10:14 UTC",
+        "Built": "R 4.6.1; x86_64-w64-mingw32; 2026-10-28 02:02:13 UTC; windows",
+        "Archs": "x64",
+        "RemoteType": "standard",
+        "RemotePkgRef": "fracdiff",
+        "RemoteRef": "fracdiff",
+        "RemoteRepos": "https://cran.rstudio.com",
+        "RemoteSha.Version": "1.5-4"
+      }
+    },
     "fs": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -668,6 +809,39 @@
         "RemoteRef": "fs",
         "RemoteRepos": "https://cran.rstudio.com",
         "RemoteSha.Version": "2.1.0"
+      }
+    },
+    "generics": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "generics",
+        "Title": "Common S3 Generics not Provided by Base R Methods Related to\nModel Fitting",
+        "Version": "0.1.4",
+        "Authors@R": "c(\n    person(\"Hadley\", \"Wickham\", , \"hadley@posit.co\", role = c(\"aut\", \"cre\"),\n           comment = c(ORCID = \"0000-0003-4757-117X\")),\n    person(\"Max\", \"Kuhn\", , \"max@posit.co\", role = \"aut\"),\n    person(\"Davis\", \"Vaughan\", , \"davis@posit.co\", role = \"aut\"),\n    person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"),\n           comment = c(ROR = \"https://ror.org/03wc8by49\"))\n  )",
+        "Description": "In order to reduce potential package dependencies and\n    conflicts, generics provides a number of commonly used S3 generics.",
+        "License": "MIT + file LICENSE",
+        "URL": "https://generics.r-lib.org, https://github.com/r-lib/generics",
+        "BugReports": "https://github.com/r-lib/generics/issues",
+        "Depends": "R (>= 3.6)",
+        "Imports": "methods",
+        "Suggests": "covr, pkgload, testthat (>= 3.0.0), tibble, withr",
+        "Config/Needs/website": "tidyverse/tidytemplate",
+        "Config/testthat/edition": "3",
+        "Encoding": "UTF-8",
+        "RoxygenNote": "7.3.2",
+        "NeedsCompilation": "no",
+        "Packaged": "2025-05-09 18:17:41 UTC; hadleywickham",
+        "Author": "Hadley Wickham [aut, cre] (ORCID:\n    <https://orcid.org/0000-0003-4757-117X>),\n  Max Kuhn [aut],\n  Davis Vaughan [aut],\n  Posit Software, PBC [cph, fnd] (ROR: <https://ror.org/03wc8by49>)",
+        "Maintainer": "Hadley Wickham <hadley@posit.co>",
+        "Repository": "CRAN",
+        "Date/Publication": "2025-05-09 23:50:06 UTC",
+        "Built": "R 4.6.1; ; 2026-10-28 02:02:10 UTC; windows",
+        "RemoteType": "standard",
+        "RemotePkgRef": "generics",
+        "RemoteRef": "generics",
+        "RemoteRepos": "https://cran.rstudio.com",
+        "RemoteSha.Version": "0.1.4"
       }
     },
     "ggplot2": {
@@ -1154,6 +1328,36 @@
         "RemoteSha.Version": "1.4.8"
       }
     },
+    "lattice": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "lattice",
+        "Version": "0.23-1",
+        "Date": "2026-08-08",
+        "Priority": "recommended",
+        "Title": "Trellis Graphics for R",
+        "Authors@R": "c(person(\"Deepayan\", \"Sarkar\", role = c(\"aut\", \"cre\"),\n\t            email = \"deepayan.sarkar@r-project.org\",\n\t\t    comment = c(ORCID = \"0000-0003-4107-1553\")),\n              person(\"Felix\", \"Andrews\", role = \"ctb\"),\n\t      person(\"Kevin\", \"Wright\", role = \"ctb\", comment = \"documentation\"),\n\t      person(\"Neil\", \"Klepeis\", role = \"ctb\"),\n\t      person(\"Johan\", \"Larsson\", role = \"ctb\", comment = \"miscellaneous improvements\"),\n              person(\"Zhijian (Jason)\", \"Wen\", role = \"cph\", comment = \"filled contour code\"),\n              person(\"Paul\", \"Murrell\", role = \"ctb\", email = \"paul@stat.auckland.ac.nz\"),\n\t      person(\"Stefan\", \"Eng\", role = \"ctb\", comment = \"violin plot improvements\"),\n\t      person(\"Achim\", \"Zeileis\", role = \"ctb\", comment = \"modern colors\"),\n              person(\"Alexandre\", \"Courtiol\", role = \"ctb\",\n                     comment = \"generics for larrows, lpolygon, lrect and lsegments\")\n\t      )",
+        "Description": "A powerful and elegant high-level data visualization\n  system inspired by Trellis graphics, with an emphasis on\n  multivariate data. Lattice is sufficient for typical graphics needs,\n  and is also flexible enough to handle most nonstandard requirements.\n  See ?Lattice for an introduction.",
+        "Depends": "R (>= 4.0.0)",
+        "Suggests": "KernSmooth, MASS, latticeExtra, colorspace",
+        "Imports": "grid, grDevices, graphics, stats, utils",
+        "Enhances": "chron, zoo",
+        "LazyLoad": "yes",
+        "LazyData": "yes",
+        "License": "GPL (>= 2)",
+        "URL": "https://lattice.r-forge.r-project.org/",
+        "BugReports": "https://github.com/deepayan/lattice/issues",
+        "NeedsCompilation": "yes",
+        "Packaged": "2026-08-12 08:02:41 UTC; deepayan",
+        "Author": "Deepayan Sarkar [aut, cre] (ORCID:\n    <https://orcid.org/0000-0003-4107-1553>),\n  Felix Andrews [ctb],\n  Kevin Wright [ctb] (documentation),\n  Neil Klepeis [ctb],\n  Johan Larsson [ctb] (miscellaneous improvements),\n  Zhijian (Jason) Wen [cph] (filled contour code),\n  Paul Murrell [ctb],\n  Stefan Eng [ctb] (violin plot improvements),\n  Achim Zeileis [ctb] (modern colors),\n  Alexandre Courtiol [ctb] (generics for larrows, lpolygon, lrect and\n    lsegments)",
+        "Maintainer": "Deepayan Sarkar <deepayan.sarkar@r-project.org>",
+        "Repository": "CRAN",
+        "Date/Publication": "2026-08-12 14:43:29 UTC",
+        "Built": "R 4.6.2; x86_64-w64-mingw32; 2026-10-29 09:49:34 UTC; windows",
+        "Archs": "x64"
+      }
+    },
     "lazyeval": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -1217,6 +1421,36 @@
         "RemoteRef": "lifecycle",
         "RemoteRepos": "https://cran.rstudio.com",
         "RemoteSha.Version": "1.0.5"
+      }
+    },
+    "lmtest": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "lmtest",
+        "Title": "Testing Linear Regression Models",
+        "Version": "0.9-40",
+        "Date": "2022-03-21",
+        "Authors@R": "c(person(given = \"Torsten\", family = \"Hothorn\", role = \"aut\", email = \"Torsten.Hothorn@R-project.org\",\n                    comment = c(ORCID = \"0000-0001-8301-0471\")),\n             person(given = \"Achim\", family = \"Zeileis\", role = c(\"aut\", \"cre\"), email = \"Achim.Zeileis@R-project.org\",\n                    comment = c(ORCID = \"0000-0003-0918-3766\")),\n             person(given = c(\"Richard\", \"W.\"), family = \"Farebrother\", role = \"aut\", comment = \"pan.f\"),\n             person(given = \"Clint\", family = \"Cummins\", role = \"aut\", comment = \"pan.f\"),\n             person(given = \"Giovanni\", family = \"Millo\", role = \"ctb\"),\n             person(given = \"David\", family = \"Mitchell\", role = \"ctb\"))",
+        "Description": "A collection of tests, data sets, and examples\n for diagnostic checking in linear regression models. Furthermore,\n some generic tools for inference in parametric models are provided.",
+        "LazyData": "yes",
+        "Depends": "R (>= 3.0.0), stats, zoo",
+        "Suggests": "car, strucchange, sandwich, dynlm, stats4, survival, AER",
+        "Imports": "graphics",
+        "License": "GPL-2 | GPL-3",
+        "NeedsCompilation": "yes",
+        "Packaged": "2022-03-21 20:25:17 UTC; zeileis",
+        "Author": "Torsten Hothorn [aut] (<https://orcid.org/0000-0001-8301-0471>),\n  Achim Zeileis [aut, cre] (<https://orcid.org/0000-0003-0918-3766>),\n  Richard W. Farebrother [aut] (pan.f),\n  Clint Cummins [aut] (pan.f),\n  Giovanni Millo [ctb],\n  David Mitchell [ctb]",
+        "Maintainer": "Achim Zeileis <Achim.Zeileis@R-project.org>",
+        "Repository": "CRAN",
+        "Date/Publication": "2022-03-21 23:00:02 UTC",
+        "Built": "R 4.6.1; x86_64-w64-mingw32; 2026-10-28 03:25:08 UTC; windows",
+        "Archs": "x64",
+        "RemoteType": "standard",
+        "RemotePkgRef": "lmtest",
+        "RemoteRef": "lmtest",
+        "RemoteRepos": "https://cran.rstudio.com",
+        "RemoteSha.Version": "0.9-40"
       }
     },
     "magrittr": {
@@ -1315,6 +1549,63 @@
         "RemoteSha.Version": "0.13"
       }
     },
+    "nlme": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "nlme",
+        "Version": "3.1-171",
+        "Date": "2026-09-01",
+        "Priority": "recommended",
+        "Title": "Linear and Nonlinear Mixed Effects Models",
+        "Authors@R": "c(person(\"José\", \"Pinheiro\", role = \"aut\", comment = \"S version\"),\n             person(\"Douglas\", \"Bates\", role = \"aut\", comment = \"up to 2007\"),\n             person(\"Saikat\", \"DebRoy\", role = \"ctb\", comment = \"up to 2002\"),\n             person(\"Deepayan\", \"Sarkar\", role = \"ctb\", comment = \"up to 2005\"),\n             person(\"EISPACK authors\", role = \"ctb\", comment = \"src/rs.f\"),\n\t     person(\"Siem\", \"Heisterkamp\", role = \"ctb\", comment = \"Author fixed sigma\"),\n             person(\"Bert\", \"Van Willigen\",role = \"ctb\", comment = \"Programmer fixed sigma\"),\n             person(\"Johannes\", \"Ranke\", role = \"ctb\", comment = \"varConstProp()\"),\n\t     person(\"R Core Team\", email = \"R-core@R-project.org\",\n                    role = c(\"aut\", \"cre\"), comment = c(ROR = \"02zz1nj61\")))",
+        "Contact": "see 'MailingList'",
+        "Description": "Fit and compare Gaussian linear and nonlinear mixed-effects models.",
+        "Depends": "R (>= 3.6.0)",
+        "Imports": "graphics, stats, utils, lattice",
+        "Suggests": "MASS",
+        "LazyData": "yes",
+        "Encoding": "UTF-8",
+        "License": "GPL (>= 2)",
+        "BugReports": "https://bugs.r-project.org",
+        "MailingList": "R-help@r-project.org",
+        "URL": "https://svn.r-project.org/R-packages/trunk/nlme/",
+        "NeedsCompilation": "yes",
+        "Packaged": "2026-09-01 09:50:33 UTC; ripley",
+        "Author": "José Pinheiro [aut] (S version),\n  Douglas Bates [aut] (up to 2007),\n  Saikat DebRoy [ctb] (up to 2002),\n  Deepayan Sarkar [ctb] (up to 2005),\n  EISPACK authors [ctb] (src/rs.f),\n  Siem Heisterkamp [ctb] (Author fixed sigma),\n  Bert Van Willigen [ctb] (Programmer fixed sigma),\n  Johannes Ranke [ctb] (varConstProp()),\n  R Core Team [aut, cre] (ROR: <https://ror.org/02zz1nj61>)",
+        "Maintainer": "R Core Team <R-core@R-project.org>",
+        "Repository": "CRAN",
+        "Date/Publication": "2026-09-01 09:55:28 UTC",
+        "Built": "R 4.6.2; x86_64-w64-mingw32; 2026-10-29 09:54:26 UTC; windows",
+        "Archs": "x64"
+      }
+    },
+    "nnet": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "nnet",
+        "Priority": "recommended",
+        "Version": "7.3-21",
+        "Date": "2026-08-01",
+        "Depends": "R (>= 3.0.0), stats, utils",
+        "Suggests": "MASS",
+        "Authors@R": "c(person(\"Brian\", \"Ripley\", role = c(\"aut\", \"cre\", \"cph\"),\n                    email = \"Brian.Ripley@R-project.org\"),\n             person(\"William\", \"Venables\", role = \"cph\"))",
+        "Description": "Software for feed-forward neural networks with a single\n  hidden layer, and for multinomial log-linear models.",
+        "Title": "Feed-Forward Neural Networks and Multinomial Log-Linear Models",
+        "ByteCompile": "yes",
+        "License": "GPL-2 | GPL-3",
+        "URL": "http://www.stats.ox.ac.uk/pub/MASS4/",
+        "NeedsCompilation": "yes",
+        "Packaged": "2026-08-03 06:32:27 UTC; ripley",
+        "Author": "Brian Ripley [aut, cre, cph],\n  William Venables [cph]",
+        "Maintainer": "Brian Ripley <Brian.Ripley@R-project.org>",
+        "Repository": "CRAN",
+        "Date/Publication": "2026-08-03 09:45:14 UTC",
+        "Built": "R 4.6.2; x86_64-w64-mingw32; 2026-10-29 09:56:29 UTC; windows",
+        "Archs": "x64"
+      }
+    },
     "otel": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -1339,7 +1630,7 @@
         "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2026-11-07 15:20:02 UTC",
-        "Built": "R 4.6.2; ; 2026-11-07 16:51:25 UTC; windows",
+        "Built": "R 4.6.2; ; 2026-11-08 15:28:42 UTC; windows",
         "RemoteType": "standard",
         "RemotePkgRef": "otel",
         "RemoteRef": "otel",
@@ -1867,6 +2158,36 @@
         "RemoteSha.Version": "3.3.1"
       }
     },
+    "timeDate": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "timeDate",
+        "Title": "Rmetrics - Chronological and Calendar Objects",
+        "Version": "4052.112",
+        "Authors@R": "c(person(\"Diethelm\", \"Wuertz\", role=\"aut\", comment = \"original code\")\n\t   , person(\"Tobias\", \"Setz\", role = c(\"aut\"), email = \"tobias.setz@live.com\")\n\t   , person(\"Yohan\", \"Chalabi\", role = \"aut\")\n\t   , person(\"Martin\",\"Maechler\", role = \"ctb\", email = \"maechler@stat.math.ethz.ch\",\n\t     comment = c(ORCID = \"0000-0002-8685-9910\"))\n\t   , person(given = c(\"Joe\", \"W.\"), family = \"Byers\", role = \"ctb\")\n\t   , person(given = c(\"Georgi\", \"N.\"), family = \"Boshnakov\", \n                    role = c(\"cre\", \"aut\"), email = \"georgi.boshnakov@manchester.ac.uk\",\n\t\t    comment = c(ORCID = \"0000-0003-2839-346X\")) )",
+        "Description": "The 'timeDate' class fulfils the conventions of the ISO 8601 \n\tstandard as well as of the ANSI C and POSIX standards. Beyond\n\tthese standards it provides the \"Financial Center\" concept\n\twhich allows to handle data records collected in different time \n\tzones and mix them up to have always the proper time stamps with \n\trespect to your personal financial center, or alternatively to the GMT\n\treference time. It can thus also handle time stamps from historical \n\tdata records from the same time zone, even if the financial \n\tcenters changed day light saving times at different calendar\n\tdates.",
+        "Depends": "R (>= 3.6.0), methods",
+        "Imports": "graphics, utils, stats",
+        "Suggests": "RUnit",
+        "License": "GPL (>= 2)",
+        "Encoding": "UTF-8",
+        "URL": "https://geobosh.github.io/timeDateDoc/ (doc),\nhttps://CRAN.R-project.org/package=timeDate,\nhttps://www.rmetrics.org",
+        "BugReports": "https://r-forge.r-project.org/tracker/?atid=633&group_id=156&func=browse",
+        "NeedsCompilation": "no",
+        "Packaged": "2026-01-26 09:43:57 UTC; georgi",
+        "Author": "Diethelm Wuertz [aut] (original code),\n  Tobias Setz [aut],\n  Yohan Chalabi [aut],\n  Martin Maechler [ctb] (ORCID: <https://orcid.org/0000-0002-8685-9910>),\n  Joe W. Byers [ctb],\n  Georgi N. Boshnakov [cre, aut] (ORCID:\n    <https://orcid.org/0000-0003-2839-346X>)",
+        "Maintainer": "Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>",
+        "Repository": "CRAN",
+        "Date/Publication": "2026-01-28 14:30:02 UTC",
+        "Built": "R 4.6.1; ; 2026-09-29 12:14:51 UTC; windows",
+        "RemoteType": "standard",
+        "RemotePkgRef": "timeDate",
+        "RemoteRef": "timeDate",
+        "RemoteRepos": "https://cran.rstudio.com",
+        "RemoteSha.Version": "4052.112"
+      }
+    },
     "tinytex": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -1896,6 +2217,35 @@
         "RemoteRef": "tinytex",
         "RemoteRepos": "https://cran.rstudio.com",
         "RemoteSha.Version": "0.61"
+      }
+    },
+    "urca": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "urca",
+        "Version": "1.3-4",
+        "Date": "2024-05-25",
+        "Title": "Unit Root and Cointegration Tests for Time Series Data",
+        "Authors@R": "c(person(\"Bernhard\", \"Pfaff\", email = \"bernhard@pfaffikus.de\", role = c(\"aut\", \"cre\")), person(\"Eric\", \"Zivot\",email = \"ezivot@u.washington.edu\", role = \"ctb\"), person(\"Matthieu\", \"Stigler\", role = \"ctb\"))",
+        "Depends": "R (>= 2.0.0), methods",
+        "Imports": "nlme, graphics, stats",
+        "LazyLoad": "yes",
+        "Description": "Unit root and cointegration tests encountered in applied \n econometric analysis are implemented.",
+        "License": "GPL (>= 2)",
+        "NeedsCompilation": "yes",
+        "Packaged": "2024-05-25 16:28:23 UTC; bp",
+        "Author": "Bernhard Pfaff [aut, cre],\n  Eric Zivot [ctb],\n  Matthieu Stigler [ctb]",
+        "Maintainer": "Bernhard Pfaff <bernhard@pfaffikus.de>",
+        "Repository": "CRAN",
+        "Date/Publication": "2024-05-27 12:20:03 UTC",
+        "Built": "R 4.6.1; x86_64-w64-mingw32; 2026-10-28 03:25:09 UTC; windows",
+        "Archs": "x64",
+        "RemoteType": "standard",
+        "RemotePkgRef": "urca",
+        "RemoteRef": "urca",
+        "RemoteRepos": "https://cran.rstudio.com",
+        "RemoteSha.Version": "1.3-4"
       }
     },
     "utf8": {
@@ -2134,11 +2484,43 @@
         "RemoteRepos": "https://cran.rstudio.com",
         "RemoteSha.Version": "2.3.12"
       }
+    },
+    "zoo": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "zoo",
+        "Version": "1.9-1",
+        "Date": "2026-09-18",
+        "Title": "S3 Infrastructure for Regular and Irregular Time Series (Z's\nOrdered Observations)",
+        "Authors@R": "c(person(given = \"Achim\", family = \"Zeileis\", role = c(\"aut\", \"cre\"), email = \"Achim.Zeileis@R-project.org\", comment = c(ORCID = \"0000-0003-0918-3766\")),\n             person(given = \"Gabor\", family = \"Grothendieck\", role = \"aut\", email = \"ggrothendieck@gmail.com\"),\n             person(given = c(\"Jeffrey\", \"A.\"), family = \"Ryan\", role = \"aut\", email = \"jeff.a.ryan@gmail.com\"),\n             person(given = c(\"Joshua\", \"M.\"), family = \"Ulrich\", role = \"ctb\", email = \"josh.m.ulrich@gmail.com\"),\n             person(given = \"Felix\", family = \"Andrews\", role = \"ctb\", email = \"felix@nfrac.org\"))",
+        "Description": "An S3 class with methods for working with regular and irregular time series.\n             The class stores data as numeric vectors/matrices (or factors) along with a time index of arbitrary class\n             (including numeric, Date, POSIXct, chron, yearmon, yearqtr, etc.). Functions and methods\n             are consistent with the ts class and base R and also extend standard generics. Tools include:\n             Data import/export, coercion, visualization (with base R, 'ggplot2', 'lattice', 'tinyplot'), alignment and merging,\n             aggregation, lags and subsets, rolling analytics, and time-based interpolation/filling.\n             The design is introduced in Zeileis and Grothendieck (2005) <doi:10.18637/jss.v014.i06>.",
+        "Depends": "R (>= 3.1.0), stats",
+        "Suggests": "AER, coda, chron, ggplot2 (>= 3.5.0), knitr, mondate, scales,\nstinepack, strucchange, timeDate, timeSeries (>= 4021.104),\ntinyplot, tis, tseries, xts",
+        "Imports": "utils, graphics, grDevices, lattice (>= 0.20-27)",
+        "License": "GPL-2 | GPL-3",
+        "VignetteBuilder": "knitr",
+        "URL": "https://zeileis.codeberg.page/zoo/",
+        "BugReports": "https://codeberg.org/zeileis/zoo/issues",
+        "NeedsCompilation": "yes",
+        "Packaged": "2026-09-18 16:02:28 UTC; zeileis",
+        "Author": "Achim Zeileis [aut, cre] (ORCID:\n    <https://orcid.org/0000-0003-0918-3766>),\n  Gabor Grothendieck [aut],\n  Jeffrey A. Ryan [aut],\n  Joshua M. Ulrich [ctb],\n  Felix Andrews [ctb]",
+        "Maintainer": "Achim Zeileis <Achim.Zeileis@R-project.org>",
+        "Repository": "CRAN",
+        "Date/Publication": "2026-09-25 09:10:02 UTC",
+        "Built": "R 4.6.1; x86_64-w64-mingw32; 2026-10-28 03:02:07 UTC; windows",
+        "Archs": "x64",
+        "RemoteType": "standard",
+        "RemotePkgRef": "zoo",
+        "RemoteRef": "zoo",
+        "RemoteRepos": "https://cran.rstudio.com",
+        "RemoteSha.Version": "1.9-1"
+      }
     }
   },
   "files": {
     "app.R": {
-      "checksum": "a2d973daa1fbf4647d1a6c73ce2aa296"
+      "checksum": "85b204c9a689c3eed3c35fa42381585c"
     },
     "R/forecasting/box_jenkins/box_jenkins.R": {
       "checksum": "f6653a9eb217dcbbca1e72963ea01b0b"
@@ -2160,6 +2542,9 @@
     },
     "R/moving_average.R": {
       "checksum": "ae7253a5fe9569e0d37a1507cead16e1"
+    },
+    "R/seasonal_module.R": {
+      "checksum": "c5221c43d8fb71a04e1f4f3054393c48"
     },
     "README.md": {
       "checksum": "b080e1275a9fc5c9523dcc678507e8ef"

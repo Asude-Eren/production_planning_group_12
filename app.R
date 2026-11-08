@@ -11,7 +11,8 @@ ui <- navbarPage("Production Planning",
                  tabPanel("Weighted Moving Average", weighted_moving_average_ui("weighted_moving_average")),
                  tabPanel("Simple Exponential Smoothing", simple_exponential_ui("ses_mod")),
                  tabPanel("Box-Jenkins", box_jenkins_ui("box_jenkins")),
-                 tabPanel("Holt's Method", holts_method_ui("holts1"))
+                 tabPanel("Holt's Method", holts_method_ui("holts1")),
+                 tabPanel("Seasonal Analysis", seasonal_ui("seasonal"))
 )
 
 server <- function(input, output, session) {
@@ -22,6 +23,7 @@ server <- function(input, output, session) {
   simple_exponential_server("ses_mod")
   box_jenkins_server("box_jenkins")
   holts_method_server("holts1")
+  seasonal_server("seasonal")
 }
 
 shinyApp(ui, server)
