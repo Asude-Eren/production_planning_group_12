@@ -14,3 +14,4 @@ learning_curve_server <- function(id) {
       plot(u, 100 * u^(-b), type = "l", xlab = "Unit", ylab = "Time")
     })
   })
+}

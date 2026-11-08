@@ -305,3 +305,4 @@ simple_exponential_server <- function(id) {
       datatable(df_out, rownames = FALSE, options = list(pageLength = 12, scrollX = TRUE))
     })
   })
+}

@@ -210,3 +210,4 @@ moving_average_server <- function(id) {
       )
     }, na = "")
   })
+}
