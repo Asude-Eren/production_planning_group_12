@@ -1630,7 +1630,7 @@
         "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2026-11-07 15:20:02 UTC",
-        "Built": "R 4.6.2; ; 2026-11-08 15:28:42 UTC; windows",
+        "Built": "R 4.6.2; ; 2026-11-07 16:51:25 UTC; windows",
         "RemoteType": "standard",
         "RemotePkgRef": "otel",
         "RemoteRef": "otel",
@@ -2520,10 +2520,13 @@
   },
   "files": {
     "app.R": {
-      "checksum": "85b204c9a689c3eed3c35fa42381585c"
+      "checksum": "8764be34f8f8a329876414e3b2a9cabd"
     },
     "R/forecasting/box_jenkins/box_jenkins.R": {
-      "checksum": "f6653a9eb217dcbbca1e72963ea01b0b"
+      "checksum": "eda6c01fdd33b514ec41aabff95c3cd8"
+    },
+    "R/forecasting/seasonal_series/seasonal_module.R": {
+      "checksum": "c5221c43d8fb71a04e1f4f3054393c48"
     },
     "R/forecasting/stationary_series/moving_average_new.R": {
       "checksum": "234fc91467052a20bbb1de864725a5c8"
@@ -2542,9 +2545,6 @@
     },
     "R/moving_average.R": {
       "checksum": "ae7253a5fe9569e0d37a1507cead16e1"
-    },
-    "R/seasonal_module.R": {
-      "checksum": "c5221c43d8fb71a04e1f4f3054393c48"
     },
     "README.md": {
       "checksum": "b080e1275a9fc5c9523dcc678507e8ef"

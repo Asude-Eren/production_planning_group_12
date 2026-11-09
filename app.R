@@ -1,4 +1,5 @@
 library(shiny)
+library(forecast)
 
 for (f in list.files("R", pattern = "\\.[Rr]$", recursive = TRUE, full.names = TRUE)) {
   source(f, local = TRUE)
