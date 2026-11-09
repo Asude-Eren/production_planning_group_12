@@ -1,6 +1,6 @@
 library(shiny)
 
-# Box-Jenkins User Interface (Arayüz)
+# Box-Jenkins User Interface (ArayC<z)
 box_jenkins_ui <- function(id) {
   ns <- NS(id)
   tagList(
@@ -43,12 +43,54 @@ box_jenkins_ui <- function(id) {
   )
 }
 
-# Box-Jenkins Server (Arka Plan İşlemleri)
+# Box-Jenkins Server (Arka Plan D0Elemleri)
 box_jenkins_server <- function(id) {
   moduleServer(id, function(input, output, session) {
+    # 1. Y??klenen dosyay?? okuma
+    data_reactive <- reactive({
+      req(input$data_file)
+      ext <- tools::file_ext(input$data_file$name)
+      
+      if (ext %in% c("xls", "xlsx")) {
+        readxl::read_excel(input$data_file$datapath)
+      } else if (ext == "csv") {
+        read.csv(input$data_file$datapath)
+      } else {
+        NULL
+      }
+    })
     
-    # Not: Arka plan hesaplamaları (veri okuma, model çalıştırma) 
-    # projenin ilerleyen aşamalarında buraya eklenecek.
-    
+    # 2. Dosya y??klendi??inde s??tun isimlerini a????l??r listeye g??nderme
+    observe({
+      df <- data_reactive()
+      req(df)
+      updateSelectInput(session, "series_col", choices = names(df))
+    })
+    # 3. Model ??al????t??rma ve Grafikleri ??izdirme
+    observeEvent(input$run_model, {
+      req(input$series_col)
+      df <- data_reactive()
+      
+      # Veriyi zaman serisine (ts) d??n????t??r
+      ts_veri <- ts(df[[input$series_col]])
+      
+      # Auto.ARIMA modelini hesapla (12 periyot ileri tahmin)
+      model <- forecast::auto.arima(ts_veri)
+      tahmin <- forecast::forecast(model, h = 12)
+      
+      # Forecast Grafi??ini ??izdir
+      output$forecast_plot <- renderPlot({
+        plot(tahmin, main = paste(input$series_col, "????in Box-Jenkins Tahmini"), 
+             xlab = "D??nem", ylab = input$series_col, 
+             col = "blue", fcol = "red")
+      })
+      
+      # ACF / PACF Grafiklerini ??izdir
+      output$acf_pacf_plot <- renderPlot({
+        par(mfrow = c(1, 2))
+        forecast::Acf(ts_veri, main = "ACF")
+        forecast::Pacf(ts_veri, main = "PACF")
+      })
+    })
   })
 }
