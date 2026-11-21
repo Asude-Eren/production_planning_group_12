@@ -73,6 +73,7 @@ weighted_moving_average_ui <- function(id) {
       .wma-dot-diamond { border-radius: 2px; transform: rotate(45deg); }
 
       .wma-note { font-size: 11.5px; color: #6B7A94; margin: 4px 0 8px 0; }
+      .wma-warn { font-size: 11.5px; color: #B5472B; margin: 4px 0 8px 0; }
     "))),
     
     # ---- Page layout ----
@@ -87,6 +88,9 @@ weighted_moving_average_ui <- function(id) {
                                      value = FALSE),
                        
                        selectInput(ns("column"), "Demand column", choices = NULL),
+                       
+                       numericInput(ns("h"), "Forecast horizon (periods ahead)",
+                                    value = 1, min = 1, max = 12, step = 1),
                        
                        radioButtons(
                          ns("n_mode"), "How should N be chosen?",
@@ -133,9 +137,10 @@ weighted_moving_average_ui <- function(id) {
                     div(class = "wma-legend",
                         span(class = "wma-dot", style = "background:#2C3E63;"), "Actual demand",
                         span(class = "wma-dot wma-dot-square", style = "background:#E76F51;"), "Forecast",
-                        span(class = "wma-dot wma-dot-diamond", style = "background:#E9B44C;"), "Next-period forecast"
+                        span(class = "wma-dot wma-dot-diamond", style = "background:#E9B44C;"), "Forecast ahead"
                     ),
                     plotOutput(ns("forecast_plot"), height = "320px"),
+                    div(class = "wma-warn", textOutput(ns("h_note"))),
                     
                     h4("Error measures"),
                     tableOutput(ns("error_table")),
@@ -208,14 +213,43 @@ weighted_moving_average_server <- function(id) {
       d[!is.na(d)]
     })
     
-    # ---- WMA forecasts (last element = next-period forecast) ----
+    # ---- Forecast horizon: at most 12 periods (and at most the number of data points) ----
+    observe({
+      updateNumericInput(session, "h", max = min(12, length(demand())))
+    })
+    
+    horizon <- reactive({
+      req(input$h)
+      hmax <- min(12, length(demand()))
+      validate(need(input$h >= 1 && input$h == round(input$h) && input$h <= hmax,
+                    paste0("Horizon must be an integer between 1 and ", hmax, ".")))
+      input$h
+    })
+    
+    # ---- WMA one-step forecasts (last element = next-period forecast) ----
     # w[1] is the weight of the most recent period (t-1)
+    # Used for the error measures and for the searches (best N / best weights)
     compute_forecast <- function(d, w) {
       n <- length(d)
       N <- length(w)
       forecast <- rep(NA_real_, n + 1)
       for (t in (N + 1):(n + 1)) {
         forecast[t] <- sum(w * d[(t - 1):(t - N)]) / sum(w)
+      }
+      forecast
+    }
+    
+    # ---- Recursive multi-step forecast ----
+    # Periods n+1 ... n+h have no actual demand, so each forecast is fed back
+    # into the window as if it were demand. Result has length n + h.
+    recursive_forecast <- function(d, w, h) {
+      n <- length(d)
+      N <- length(w)
+      x <- c(d, rep(NA_real_, h))
+      forecast <- rep(NA_real_, n + h)
+      for (t in (N + 1):(n + h)) {
+        forecast[t] <- sum(w * x[(t - 1):(t - N)]) / sum(w)
+        if (t > n) x[t] <- forecast[t]
       }
       forecast
     }
@@ -397,30 +431,61 @@ weighted_moving_average_server <- function(id) {
     
     # ---- Title at the top ----
     output$title <- renderText({
-      d <- demand()
-      w <- wma_weights()
-      f <- compute_forecast(d, w)
-      paste0("WMA(", length(w), ") \u2014 next-period forecast: ",
-             sprintf("%.2f", f[length(d) + 1]))
+      d  <- demand()
+      n  <- length(d)
+      w  <- wma_weights()
+      h  <- horizon()
+      fe <- recursive_forecast(d, w, h)
+      if (h == 1) {
+        paste0("WMA(", length(w), ") \u2014 next-period forecast: ",
+               sprintf("%.3f", fe[n + 1]))
+      } else {
+        paste0("WMA(", length(w), ") \u2014 forecast for period ", n + 1, ": ",
+               sprintf("%.3f", fe[n + 1]),
+               " | period ", n + h, ": ", sprintf("%.3f", fe[n + h]))
+      }
     })
     
     # ---- Plot of actual demand and forecast ----
     output$forecast_plot <- renderPlot({
-      d <- demand()
-      w <- wma_weights()
-      n <- length(d)
-      f <- compute_forecast(d, w)
+      d  <- demand()
+      w  <- wma_weights()
+      h  <- horizon()
+      n  <- length(d)
+      fe <- recursive_forecast(d, w, h)
       
       par(bg = "#FFFFFF", mar = c(4, 4, 2.5, 1), cex.main = 1, cex.lab = 0.9,
           cex.axis = 0.85)
       plot(1:n, d, type = "o", pch = 16, cex = 0.7, col = "#2C3E63", lwd = 1.5,
-           xlim = c(1, n + 1), ylim = range(c(d, f), na.rm = TRUE),
+           xlim = c(1, n + h), ylim = range(c(d, fe), na.rm = TRUE),
            xlab = "Period", ylab = "Demand",
            main = paste0("Actual demand and WMA(", length(w), ") forecast"))
       grid(col = "#E1E8F1")
-      lines(1:(n + 1), f, type = "o", pch = 15, cex = 0.6, lty = 1, lwd = 1.5,
-            col = "#E76F51")
-      points(n + 1, f[n + 1], pch = 18, cex = 2.2, col = "#E9B44C")
+      lines(1:(n + 1), fe[1:(n + 1)], type = "o", pch = 15, cex = 0.6, lty = 1,
+            lwd = 1.5, col = "#E76F51")
+      if (h > 1) {
+        lines((n + 1):(n + h), fe[(n + 1):(n + h)], lty = 2, lwd = 1.5,
+              col = "#E9B44C")
+      }
+      points((n + 1):(n + h), fe[(n + 1):(n + h)], pch = 18,
+             cex = if (h == 1) 2.2 else 1.6, col = "#E9B44C")
+    })
+    
+    # ---- Horizon note / warning ----
+    output$h_note <- renderText({
+      h <- horizon()
+      N <- length(wma_weights())
+      n <- length(demand())
+      if (h == 1) return("")
+      msg <- paste0("Recursive forecast: for periods ", n + 2, " to ", n + h,
+                    ", earlier forecasts are used in place of the missing actual demand. ",
+                    "Error measures refer to one-step-ahead forecasts only.")
+      if (h > N) {
+        msg <- paste0("Warning: the horizon (", h, ") is larger than N (", N,
+                      "), so the last forecasts are based entirely on earlier forecasts ",
+                      "and no actual data. Reliability is low. ", msg)
+      }
+      msg
     })
     
     # ---- Error measures table ----
@@ -432,11 +497,11 @@ weighted_moving_average_server <- function(id) {
       h     <- error_measures(d, compute_forecast(d, w), start = start)
       data.frame(
         "Measure" = c("MAD", "MSE", "MAPE (%)"),
-        "Value"   = round(unname(h), 2),
+        "Value"   = round(unname(h), 3),
         "Periods evaluated" = paste0(start, "\u2013", n),
         check.names = FALSE
       )
-    }, digits = 2)
+    }, digits = 3)
     
     # ---- Note describing what was searched automatically ----
     output$search_note <- renderText({
@@ -467,7 +532,7 @@ weighted_moving_average_server <- function(id) {
       tbl$MAPE <- round(tbl$MAPE, 3)
       tbl$N    <- as.integer(tbl$N)
       tbl
-    })
+    }, digits = 3)
     
     # ---- Auto-N mode: bar plot (best N in coral) ----
     output$bar_plot <- renderPlot({
@@ -489,21 +554,23 @@ weighted_moving_average_server <- function(id) {
         "Share of total (%)"  = w / sum(w) * 100,
         check.names = FALSE
       )
-    }, digits = 2)
+    }, digits = 3)
     
     # ---- Period-by-period forecast table (Error = F - D) ----
     output$period_table <- renderTable({
-      d <- demand()
-      n <- length(d)
-      f <- compute_forecast(d, wma_weights())
+      d  <- demand()
+      n  <- length(d)
+      h  <- horizon()
+      fe <- recursive_forecast(d, wma_weights(), h)
+      dd <- c(d, rep(NA_real_, h))
       data.frame(
-        "Period"            = 1:(n + 1),
-        "Demand (D)"        = c(d, NA),
-        "Forecast (F)"      = f,
-        "Error (e = F - D)" = f - c(d, NA),
+        "Period"            = 1:(n + h),
+        "Demand (D)"        = dd,
+        "Forecast (F)"      = fe,
+        "Error (e = F - D)" = fe - dd,
         check.names = FALSE
       )
-    }, na = "", digits = 2)
+    }, na = "", digits = 3)
     
   })
 }
