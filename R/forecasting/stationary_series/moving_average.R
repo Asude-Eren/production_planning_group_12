@@ -271,7 +271,7 @@ moving_average_server <- function(id) {
       d <- demand()
       N <- chosen_n()
       f <- compute_forecast(d, N)
-      paste0("MA(", N, ") — next-period forecast: ",
+      paste0("MA(", N, ") \u2014 next-period forecast: ",
              sprintf("%.2f", f[length(d) + 1]))
     })
     
@@ -304,7 +304,7 @@ moving_average_server <- function(id) {
       data.frame(
         "Measure" = c("MAD", "MSE", "MAPE (%)"),
         "Value"   = round(unname(h), 2),
-        "Periods evaluated" = paste0(start, "–", n),
+        "Periods evaluated" = paste0(start, "\u2013", n),
         check.names = FALSE
       )
     }, digits = 2)
@@ -329,7 +329,7 @@ moving_average_server <- function(id) {
       req(input$mode == "auto")
       upper <- max_n()
       paste0("All N values from 1 to ", upper, " are compared on the same periods (",
-             upper + 1, "–", length(demand()), "), so the comparison is fair.")
+             upper + 1, "\u2013", length(demand()), "), so the comparison is fair.")
     })
     
     # ---- Auto mode: comparison table of all N values ----

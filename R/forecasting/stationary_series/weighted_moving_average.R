@@ -400,7 +400,7 @@ weighted_moving_average_server <- function(id) {
       d <- demand()
       w <- wma_weights()
       f <- compute_forecast(d, w)
-      paste0("WMA(", length(w), ") — next-period forecast: ",
+      paste0("WMA(", length(w), ") \u2014 next-period forecast: ",
              sprintf("%.2f", f[length(d) + 1]))
     })
     
@@ -433,7 +433,7 @@ weighted_moving_average_server <- function(id) {
       data.frame(
         "Measure" = c("MAD", "MSE", "MAPE (%)"),
         "Value"   = round(unname(h), 2),
-        "Periods evaluated" = paste0(start, "–", n),
+        "Periods evaluated" = paste0(start, "\u2013", n),
         check.names = FALSE
       )
     }, digits = 2)
@@ -445,14 +445,14 @@ weighted_moving_average_server <- function(id) {
       parts <- character(0)
       if (input$n_mode == "auto") {
         parts <- c(parts, paste0("All N values from 2 to ", max_n(),
-                                 " are compared on the same periods (", start, "–", n, ")."))
+                                 " are compared on the same periods (", start, "\u2013", n, ")."))
         if (input$weight_mode == "manual") {
           parts <- c(parts, "For each N, the first N of your weights (w1 ... wN) were used.")
         }
       }
       if (input$weight_mode == "auto") {
         parts <- c(parts, paste0("Weights were optimized to minimize ", input$criterion,
-                                 " on periods ", start, "–", n,
+                                 " on periods ", start, "\u2013", n,
                                  " (in-sample), so the error shown may be optimistic for future forecasts."))
       }
       paste(parts, collapse = " ")
