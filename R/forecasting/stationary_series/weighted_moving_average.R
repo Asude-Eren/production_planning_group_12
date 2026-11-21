@@ -82,6 +82,10 @@ weighted_moving_average_ui <- function(id) {
                        fileInput(ns("file"), "Upload an Excel or CSV file (.xlsx, .csv)",
                                  accept = c(".xlsx", ".csv")),
                        
+                       checkboxInput(ns("use_example"),
+                                     "Use example data (Wallace Garden Supply, Shed Sales)",
+                                     value = FALSE),
+                       
                        selectInput(ns("column"), "Demand column", choices = NULL),
                        
                        radioButtons(
@@ -161,21 +165,33 @@ weighted_moving_average_ui <- function(id) {
 weighted_moving_average_server <- function(id) {
   moduleServer(id, function(input, output, session) {
     
-    # ---- Read the uploaded file (.xlsx or .csv) ----
+    # ---- Example data: Wallace Garden Supply (monthly shed sales) ----
+    example_data <- data.frame(
+      Month = c("January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"),
+      "Shed Sales" = c(10, 12, 13, 16, 19, 23, 26, 30, 28, 18, 16, 14),
+      check.names = FALSE
+    )
+    
+    # ---- Read the example data or the uploaded file (.xlsx or .csv) ----
     raw_data <- reactive({
-      req(input$file)
-      ext <- tolower(tools::file_ext(input$file$name))
-      validate(need(ext %in% c("xlsx", "csv"),
-                    "Please upload an .xlsx or .csv file."))
-      if (ext == "csv") {
-        df <- read.csv(input$file$datapath, check.names = FALSE)
-        # If only one column was found, the file probably uses ";" as separator
-        if (ncol(df) == 1) {
-          df <- read.csv2(input$file$datapath, check.names = FALSE)
-        }
-        df
+      if (isTRUE(input$use_example)) {
+        example_data
       } else {
-        read_excel(input$file$datapath)
+        req(input$file)
+        ext <- tolower(tools::file_ext(input$file$name))
+        validate(need(ext %in% c("xlsx", "csv"),
+                      "Please upload an .xlsx or .csv file."))
+        if (ext == "csv") {
+          df <- read.csv(input$file$datapath, check.names = FALSE)
+          # If only one column was found, the file probably uses ";" as separator
+          if (ncol(df) == 1) {
+            df <- read.csv2(input$file$datapath, check.names = FALSE)
+          }
+          df
+        } else {
+          read_excel(input$file$datapath)
+        }
       }
     })
     
@@ -187,7 +203,7 @@ weighted_moving_average_server <- function(id) {
     
     # ---- Demand vector ----
     demand <- reactive({
-      req(input$column)
+      req(input$column, input$column %in% names(raw_data()))
       d <- raw_data()[[input$column]]
       d[!is.na(d)]
     })
