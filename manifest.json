@@ -2543,13 +2543,13 @@
       "checksum": "c5221c43d8fb71a04e1f4f3054393c48"
     },
     "R/forecasting/stationary_series/moving_average.R": {
-      "checksum": "9b776afb9462275dfa6eae1702760558"
+      "checksum": "73d1caf56faacfb8c2a2085eb54aee42"
     },
     "R/forecasting/stationary_series/simple_exponential.R": {
       "checksum": "004fd34be274fa4cc58a045ff2d9712f"
     },
     "R/forecasting/stationary_series/weighted_moving_average.R": {
-      "checksum": "dd5fb3c4b8c803807004f82be7f1b995"
+      "checksum": "39a96d3a2af9436019f3897867ea6076"
     },
     "R/forecasting/trend_series/holts_method.R": {
       "checksum": "5919c91a48224a76830809069c9c7919"
