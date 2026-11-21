@@ -2534,7 +2534,7 @@
   },
   "files": {
     "app.R": {
-      "checksum": "4227f2bc6537adc2bd92337e6b09d5c5"
+      "checksum": "0b1207a43d952ba5d434554c0ee4bbc8"
     },
     "R/forecasting/box_jenkins/box_jenkins.R": {
       "checksum": "f6653a9eb217dcbbca1e72963ea01b0b"
@@ -2543,13 +2543,13 @@
       "checksum": "c5221c43d8fb71a04e1f4f3054393c48"
     },
     "R/forecasting/stationary_series/moving_average.R": {
-      "checksum": "73d1caf56faacfb8c2a2085eb54aee42"
+      "checksum": "11e9f9a3bc71f1a6b060e3108b3ea430"
     },
     "R/forecasting/stationary_series/simple_exponential.R": {
       "checksum": "004fd34be274fa4cc58a045ff2d9712f"
     },
     "R/forecasting/stationary_series/weighted_moving_average.R": {
-      "checksum": "39a96d3a2af9436019f3897867ea6076"
+      "checksum": "412458d768de155c9e890bc53131f457"
     },
     "R/forecasting/trend_series/holts_method.R": {
       "checksum": "5919c91a48224a76830809069c9c7919"
