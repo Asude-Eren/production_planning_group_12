@@ -2533,9 +2533,6 @@
     }
   },
   "files": {
-    ".RData": {
-      "checksum": "acb8df30ece501b045aa71bf48302c56"
-    },
     "app.R": {
       "checksum": "4227f2bc6537adc2bd92337e6b09d5c5"
     },
